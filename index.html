@@ -6,10 +6,10 @@
 <body>
   <main>
     <script language="JavaScript" type="text/javascript">
-    //JavaScript goes here
+    var playerScore = 0;
+    var computerScore = 0;
 
-
-    function computerPlay() = {
+    function computerPlay() {
       let selection = Math.floor(Math.random() * Math.floor(3));
       if (selection === 1) {
         return "Rock";
@@ -20,8 +20,89 @@
       else {
         return "Scissors";
       }
-
     }
+
+    function caseInsensitive(string) {
+      return string[0].toUpperCase() + string.substring(1).toLowerCase();
+    }
+
+    function validSelection(playerSelection) {
+      playerSelection = playerSelection.caseInsensitive();
+      if (playerSelection === "Rock" || playerSelection === "Paper" || playerSelection === "Scissors") {
+        return true;
+      }
+    }
+
+    function playRound(playerSelection, computerSelection) {
+
+      function playerSelection() {
+        let playerInput = prompt("Select Rock, Paper, or Scissors!");
+        if (validSelection(playerInput)) {
+          return playerInput.caseInsensitive();
+        } else {
+          alert("Invalid selection. Please make valid selection.");
+          return playerSelection();
+        }
+      }
+
+      computerSelection = computerPlay();
+
+
+      switch (playerSelection) {
+        case "Rock":
+          if (computerSelection === "Rock") {
+            console.log("It's a tie!");
+          }
+          else if (computerSelection === "Scissors") {
+            console.log("Congratulation! You won! The computer chose " + computerSelection +"!");
+            playerScore++;
+          }
+          else {
+            console.log("Sorry, you lose. The computer chose " + computerSelection + "!");
+            computerScore++;
+          }
+          break;
+
+        case "Paper":
+          if (computerSelection === "Paper") {
+            console.log("It's a tie!");
+          }
+          else if (computerSelection === "Rock") {
+            console.log("Congratulation! You won! The computer chose " + computerSelection +"!");
+            playerScore++;
+          }
+          else {
+            console.log("Sorry, you lose. The computer chose " + computerSelection + "!");
+            computerScore++;
+          }
+          break;
+
+        case "Scissors":
+          if (computerSelection === "Scissors") {
+            console.log("It's a tie!");
+          }
+          else if (computerSelection === "Paper") {
+            console.log("Congratulation! You won! The computer chose " + computerSelection +"!");
+            playerScore++;
+          }
+          else {
+            console.log("Sorry, you lose. The computer chose " + computerSelection + "!");
+            computerScore++;
+          }
+        }
+
+      }
+      function total(){
+
+        if (playerScore === 5 && playerScore > computerScore) {
+          console.log("VICTORY! You beat the computer!")
+        }
+        else if (computerScore === 5 && computerScore > playerScore){
+          console.log("Sorry, the computer won the series.")
+        }
+      }
+
+
 
     </script>
   </main>
